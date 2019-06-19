@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ttt</title>
+	<style type="text/css">
+	*{
+		margin:0px;
+
+	}
+	body{
+		background-image: url(PHOTOS/ttt.jpg);
+		background-size: cover;
+
+	}	#main{
+		width:495px;
+		height: 570px;
+		/* border:5px green solid;	 */
+		position:relative;
+		top:40px;
+		left:400px;
+		text-align: center;
+	}
+	.buttons{
+		height:160px;
+		width:165px;
+		border:5px white solid;
+		float: left;
+		background-color: transparent;
+		color: white;
+	font-size: 80px;
+		  	}
+	 #reset{
+		 height:100px;
+		 width:400px;
+		 border:10px yellow solid;
+		 border-radius: 50px;
+		 background-color: red;
+		 font-size: 70px;
+		 margin-top: 30px;
+		 color: white;
+	 }
+	 #btn1{border-left:none;}
+	 #btn1{border-top:none;}
+	 #btn2{border-top:none;}
+	 #btn3{border-right:none;}	 #btn3{border-top:none;}
+
+	 #btn4{border-left:none;}
+ 	 #btn6{border-right:none;}
+	 #btn7{border-left:none;} 	 #btn7{border-bottom:none;}
+
+	 #btn8{border-bottom:none;}
+	 #btn9{border-right:none;} 	 #btn9{border-bottom:none;}
+
+
+ 	</style>
+
+
+
+</head>
+<body>
+	<div id="main">
+		<input type="button" class="buttons" id="btn1"  onclick="game('btn1')"/>
+		<input type="button" class="buttons" id="btn2" onclick="game('btn2')"/>
+		<input type="button" class="buttons" id="btn3" onclick="game('btn3')"/>
+		<input type="button" class="buttons" id="btn4" onclick="game('btn4')"/>
+		<input type="button" class="buttons" id="btn5" onclick="game('btn5')"/>
+		<input type="button" class="buttons" id="btn6" onclick="game('btn6')"/>
+		<input type="button" class="buttons" id="btn7" onclick="game('btn7')"/>
+		<input type="button" class="buttons" id="btn8" onclick="game('btn8')"/>
+		<input type="button" class="buttons" id="btn9" onclick="game('btn9')"/>
+		<input type="button"   id="reset" value="RESET" onclick="reset()"/>
+
+	</div>
+<script type="text/javascript">
+
+var values=1;
+function game(btn){
+	if(values==1){
+		document.getElementById(btn).value="X";
+		document.getElementById(btn).disabled="disabled";
+		victory();
+
+		values--;
+	}
+	else{
+		document.getElementById(btn).value="O";
+		document.getElementById(btn).disabled="disabled";
+		victory();
+
+values++;
+	}
+}
+
+function victory(){
+	if(
+		document.getElementById("btn1").value=="X"&&
+		document.getElementById("btn2").value=="X"&&
+		document.getElementById("btn3").value=="X"||
+
+		document.getElementById("btn4").value=="X"&&
+		document.getElementById("btn5").value=="X"&&
+		document.getElementById("btn6").value=="X"||
+
+		document.getElementById("btn7").value=="X"&&
+		document.getElementById("btn8").value=="X"&&
+		document.getElementById("btn9").value=="X"||
+
+		document.getElementById("btn1").value=="X"&&
+		document.getElementById("btn4").value=="X"&&
+		document.getElementById("btn7").value=="X"||
+
+		document.getElementById("btn2").value=="X"&&
+		document.getElementById("btn5").value=="X"&&
+		document.getElementById("btn8").value=="X"||
+
+		document.getElementById("btn3").value=="X"&&
+		document.getElementById("btn6").value=="X"&&
+		document.getElementById("btn9").value=="X"||
+
+		document.getElementById("btn1").value=="X"&&
+		document.getElementById("btn5").value=="X"&&
+		document.getElementById("btn9").value=="X"||
+
+		document.getElementById("btn3").value=="X"&&
+		document.getElementById("btn5").value=="X"&&
+		document.getElementById("btn7").value=="X"
+
+	){
+ 		window.setTimeout(reset,500);
+		 var id=document.write("<img src='PHOTOS/ttt_xwins.png'  width=100% > ");
+		 window.setTimeout(function(){clearTimeout(id);},500);
+
+      
+ 	}
+
+	else if(
+		document.getElementById("btn1").value=="O"&&
+		document.getElementById("btn2").value=="O"&&
+		document.getElementById("btn3").value=="O"||
+
+		document.getElementById("btn4").value=="O"&&
+		document.getElementById("btn5").value=="O"&&
+		document.getElementById("btn6").value=="O"||
+
+		document.getElementById("btn7").value=="O"&&
+		document.getElementById("btn8").value=="O"&&
+		document.getElementById("btn9").value=="O"||
+
+		document.getElementById("btn1").value=="O"&&
+		document.getElementById("btn4").value=="O"&&
+		document.getElementById("btn7").value=="O"||
+
+		document.getElementById("btn2").value=="O"&&
+		document.getElementById("btn5").value=="O"&&
+		document.getElementById("btn8").value=="O"||
+
+		document.getElementById("btn3").value=="O"&&
+		document.getElementById("btn6").value=="O"&&
+		document.getElementById("btn9").value=="O"||
+
+		document.getElementById("btn1").value=="O"&&
+		document.getElementById("btn5").value=="O"&&
+		document.getElementById("btn9").value=="O"||
+
+		document.getElementById("btn3").value=="O"&&
+		document.getElementById("btn5").value=="O"&&
+		document.getElementById("btn7").value=="O"
+	){
+ 		window.setTimeout(reset,500);
+		 var id=document.write("<img src='PHOTOS/ttt_owins.png'  width=100% > ");
+		 window.setTimeout(function(){clearTimeout(id);},500);
+
+ 	}
+}
+
+function reset(){
+	document.getElementById("btn1").value="";
+	document.getElementById("btn2").value="";
+	document.getElementById("btn3").value="";
+	document.getElementById("btn4").value="";
+	document.getElementById("btn5").value="";
+	document.getElementById("btn6").value="";
+	document.getElementById("btn7").value="";
+	document.getElementById("btn8").value="";
+	document.getElementById("btn9").value="";
+
+	document.getElementById("btn1").disabled="";
+	document.getElementById("btn2").disabled="";
+	document.getElementById("btn3").disabled="";
+	document.getElementById("btn4").disabled="";
+	document.getElementById("btn5").disabled="";
+	document.getElementById("btn6").disabled="";
+	document.getElementById("btn7").disabled="";
+	document.getElementById("btn8").disabled="";
+	document.getElementById("btn9").disabled="";
+	values=1;
+
+}
+
+</script>
+</body>
+</html>
