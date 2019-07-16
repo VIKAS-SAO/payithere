@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>pinball_game_hmtl_javascript</title>
+    <style type="text/css">
+    body{
+        margin:0px;
+        padding:0px;
+        background: rgb(54, 48, 48);
+    }
+		  #game{
+        position:absolute;
+        top:30%;
+        left:30%;
+         border:2px red solid;
+         box-shadow: 0px 0px 10px 10px white;
+
+    }
+    
+ 
+		 
+	</style>
+
+</head>
+
+<body>
+  <canvas id="game"></canvas>
+   
+ 
+
+
+
+
+  
+	<script type="text/javascript">
+var canvas=document.querySelector("canvas");
+var c=canvas.getContext("2d");
+
+canvas.height=400;
+canvas.width=450;
+var ball_radius=5,
+panel_height=10,panel_width=100,
+userscore=0,compscore=0,
+ball_x=200,ball_y=200,
+ball_x_velocity=1,ball_y_velocity=1;
+panel_1_x=350,panel_1_y=390,panel_2_x=200,panel_2_y=0;
+ var AIS=4;
+document.addEventListener("DOMContentLoaded",function(){
+setInterval(update,10/3);
+})
+function update(){
+
+	document.addEventListener("mousemove",function(ev){
+        panel_1_x=ev.clientX-503;  
+    })
+    
+    if(ball_x+ball_radius>450||ball_x-ball_radius<0){
+        ball_x_velocity=-ball_x_velocity;
+     } 
+    if(ball_y>=385&&ball_x>=panel_1_x&&ball_x<=panel_1_x+panel_width){
+        ball_y_velocity=-ball_y_velocity;
+        ball_x_velocity=(Math.random()-.5)*5;
+	}
+	if(ball_y>400 &&(ball_x<panel_1_x||ball_x>panel_1_x+panel_width)){
+		ball_x=200,ball_y=200;
+	compscore++;
+	}
+/////////////////////////////////////////////////////////////////////////////////////
+	 
+    if(ball_y<=15&&ball_x>=panel_2_x&&ball_x<=panel_2_x+panel_width){
+        ball_y_velocity=-ball_y_velocity;
+        ball_x_velocity=(Math.random()-.5)*5;
+
+	}
+	if(ball_y<0 &&(ball_x<panel_1_x||ball_x>panel_1_x+panel_width)){
+		ball_x=200,ball_y=200;
+	userscore++;
+	ball_x_velocity=-ball_x_velocity ;
+ 
+	ball_y_velocity=-ball_y_velocity; 
+	}
+	if(ball_x<panel_2_x+panel_width/2){
+		panel_2_x-=AIS;
+	}
+	if(ball_x>panel_2_x+panel_width/2){
+		panel_2_x+=AIS;
+	}
+	
+	ball_x+=ball_x_velocity;
+    ball_y+=ball_y_velocity;
+
+
+    c.fillStyle="black";
+    c.fillRect(0,0,450,400);
+    c.beginPath();
+
+    if(ball_y>=370||ball_y<=40){
+        c.fillStyle="red";
+    }
+    else{
+        c.fillStyle="white";
+    }
+
+     c.arc(ball_x,ball_y,ball_radius,0,Math.PI*2,false);
+    c.fill();
+    c.closePath(); 
+    c.fillRect(panel_1_x,panel_1_y,panel_width,panel_height);
+	c.fillRect(panel_2_x,panel_2_y,panel_width,panel_height);
+	c.font="40px seriff";
+    c.fillStyle="white";
+	c.fillText("YOU : "+userscore,10,210);
+	c.fillText(compscore+" : COMP",270,210);
+
+     
+
+}
+ 
+function reset(){
+	
+
+}
+ 
+	</script>
+
+</body>
+
+</html>

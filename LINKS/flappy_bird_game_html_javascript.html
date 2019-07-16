@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> flappy_bird_game_html_javascript</title>
+    <style type="text/css">
+    body{
+        margin:0px;
+        padding:0px;
+        background-color: rgb(61, 58, 58);
+     } 
+	 	  canvas{
+        position:absolute;
+        top:10%;
+        left:35%;
+         border:2px #291b10 solid;
+ 
+    }
+    
+ 
+		 
+	</style>
+
+</head>
+
+<body>
+      <canvas ></canvas>
+
+   <script type="text/javascript">
+   var canvas=document.querySelector("canvas");
+   var c=canvas.getContext("2d");
+ canvas.height=550;
+ canvas.width=400;
+ 
+//variables
+ var bird_x=25,bird_y=10,gravity=2,pipe_x=330,
+ pipe_width=70,pipe_1_height=200,gap=100,score=0,
+ pipe_1_y=0 ;
+ //for the bird to fly in key press
+ document.addEventListener("keydown",function(){
+         bird_y-=40;
+     })
+
+
+     //array of pipes
+      var pipes=[];
+     pipes[0]={x:pipe_x,y:0,height:200}
+     
+//animation function
+ function animate(){
+     bird_y+=gravity;
+
+
+     
+ 
+ 
+
+     
+    
+
+
+     c.fillStyle="green";
+ c.fillRect(0,450,400,100);
+ c.fillStyle="#3cbaec ";
+ c.fillRect(0,0,400,450);
+     c.beginPath();
+     c.fillStyle="red";
+     c.arc(bird_x,bird_y,10,0,Math.PI*2,false);
+     c.fill();
+     c.closePath();
+     c.font="40px fantasy";
+     c.fillstyle="yellow";
+ c.fillText("SCORE : "+score,20,490);
+
+     
+     for(var i=0;i<pipes.length;i++){
+    c.fillStyle="#e8c413"; 
+    c.fillRect(pipes[i].x,pipe_1_y,pipe_width,pipes[i].height);
+     c.fillRect(pipes[i].x,pipes[i].height+gap,pipe_width,450-pipes[i].height-gap);
+     pipes[i].x--;
+  }
+
+ //add new pipes
+ if(pipes[pipes.length-1].x==150){
+     pipes.push({x:pipe_x+pipe_width,y:0});
+     pipes[pipes.length-1].height=Math.random()*300;
+     score++;
+
+ }
+  if(pipes.length>=2&&(bird_y<pipes[pipes.length-2].height+10||bird_y>pipes[pipes.length-2].height+gap-10)){
+      if(bird_x+10>pipes[pipes.length-2].x&&bird_x-10<pipes[pipes.length-2].x+pipe_width){location.reload();}
+     if(bird_y+10>450){location.reload();}
+ 
+  }
+   
+
+
+
+     requestAnimationFrame(animate);
+
+ }
+ animate();
+   </script>
+
+</body>
+
+</html>
